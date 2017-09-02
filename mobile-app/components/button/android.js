@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const ButtonText = styled.Text`
   color:black;
@@ -11,9 +13,14 @@ const ButtonView = styled.View`
   background: #D6D6D6;
 `
 const Button = (props)=>{
-  const {children} = props
+  const {
+    children,
+    iconColor
+  } = props
   return (
     <ButtonView>
+      <Icon name="rocket" size={30} color={iconColor ? iconColor : null} />
+
       <ButtonText>{children}</ButtonText>
     </ButtonView>
   )

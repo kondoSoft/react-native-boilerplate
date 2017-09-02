@@ -6,7 +6,7 @@ import {Button as androidButton } from './android';
 
 var Button = androidButton
 
-if (Platform.OS != 'ios'){
+if (Platform.OS == 'ios'){
   Button = iosButton
 }
 
