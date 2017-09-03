@@ -4,35 +4,44 @@ import styled from 'styled-components/native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const ButtonText = styled.Text`
-  color:#007AFF;
-  flex:1;
-`
-const ButtonView = styled.View`
-  border: 1px solid #C7C7CC;
+
+const baseProps = {
+  fontSize:25,
+}
+
+const ButtonView = styled.TouchableOpacity`
+  ${props => props.outlined ? 'border: 1px solid #C7C7CC;' : null}
   padding: 5px;
   border-radius: 3px;
-  display: flex;
+  display: flex
   flex-direction: row;
+  align-items: center;
+
+`
+
+const ButtonText = styled.Text`
+  color:#007AFF;
+  font-size: ${props => props.size ? props.size-10 : baseProps.fontSize-10};
 `
 
 const IconStyled = styled(Icon)`
-  display: inline-block;
-  flex:1;
+  color:#007AFF;
 `
 const Button = (props)=>{
   const {
     children,
     iconColor,
-    icon
+    icon,
+    size,
+    outlined
   } = props
   return (
-    <ButtonView>
+    <ButtonView {...props}>
       {icon ?
-        <IconStyled name={`ios-${icon}`} size={30} color={iconColor ? iconColor : null} /> :
+        <IconStyled name={`ios-${icon}`} size={size ? size : baseProps.fontSize} color={iconColor ? iconColor : null} /> :
         null
       }
-      <ButtonText>{children}</ButtonText>
+      <ButtonText size={size}> {children}</ButtonText>
     </ButtonView>
   )
 }
